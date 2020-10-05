@@ -4,6 +4,7 @@ const FilmController = require('../controllers/FilmController');
 router.get('/', FilmController.getAll);
 router.get('/:id', FilmController.getById);
 router.get('/:title', FilmController.getByTitle);
+router.post('/', FilmController.create);
 
 
 

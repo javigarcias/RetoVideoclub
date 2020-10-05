@@ -38,7 +38,18 @@ const FilmController = {
                     message: 'There was a problem trying to get the film'
                 })
             })
+    },
+    create(req, res) {
+        Film.create(req.body)  
+            .then(film => res.send(film))
+            .catch(error => {
+                console.error(error);
+                res.status(500).send({
+                    message: 'There was a problem trying to create the film'
+                })
+            })
     }
+
 }
 
 
