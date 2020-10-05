@@ -3,7 +3,7 @@ const FilmController = require('../controllers/FilmController');
 
 router.get('/', FilmController.getAll);
 router.get('/:id', FilmController.getById);
-router.get('/:title', FilmgitController.getByTitle);
+router.get('/:title', FilmController.getByTitle);
 
 
 
