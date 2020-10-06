@@ -23,9 +23,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    token: {
+      type: DataTypes.STRING,
+    },
   }, {
     sequelize,
     modelName: 'User',
   });
+  User.prototype.toJSON = function() {
+    const values = this.get();
+    delete values.password;
+    return values;
+  }
   return User;
 };
