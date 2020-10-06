@@ -47,7 +47,27 @@ const UserController = {
             res.status(500).send({ message: 'There was a problem trying to login' })
         }
 
-    }
+    },
+    async delete(req, res) {
+        try {
+            const user = await User.destroy({
+                where: {
+                    email: req.body.email
+                }
+            })
+            if (!user) {
+                return res.status(400).send({
+                    message: 'Email does not exist'
+                })
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({
+                error,
+                message: 'There was a problem trying to deleted the user'
+            })
+        }
+    },
 }
 
 module.exports = UserController;
