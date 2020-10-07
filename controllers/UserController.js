@@ -60,6 +60,9 @@ const UserController = {
                     message: 'Email does not exist'
                 })
             }
+            res.status(200).send({
+                message: 'Email DELETED'
+            })
         } catch (error) {
             console.error(error);
             res.status(500).send({
