@@ -31,26 +31,26 @@ const OrderController = {
             })
         }
     },
-    create(req,res){
-        const returnDate = new Date();
-        returnDate.setDate(returnDate.getDate() + 3)
-        Order.create({
+    async create(req,res){
+        try {
+            const returnDate = new Date();
+            returnDate.setDate(returnDate.getDate() + 3)
+            const order = await Order.create({
                 status: 'Alquilada',
                 returnDate,
                 UserId: req.user.id
+                });
+                await order.addFilm(req.body.films);
+                res.send ({
+                    message: 'Added successfully in your order'
+                }); 
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({
+                error,
+                message: 'There was a problem trying to get the orders'
             })
-            .then(order => {
-                return order.addFilm(req.body.films); //añade en OrderMovies las movies con el OrderId
-            })
-            .then(() => res.send({
-                message: 'Order successfully created!'
-            }))
-            .catch(error => {
-                console.error(error);
-                res.status(500).send({
-                    message: 'There was a problema trying to create the order'
-                })
-            })
+        }
     }
 
 }

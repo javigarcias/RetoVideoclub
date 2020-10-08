@@ -4,7 +4,7 @@ const userRouter = require('./routes/userRouter');
 const orderRouter = require('./routes/orderRouter');
 const auth = require('./middleware/auth');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get('/', auth, (req, res) => res.send(req.user));
 
@@ -15,4 +15,4 @@ app.use('/orders', auth , orderRouter);
 
 
 
-app.listen(PORT, () => console.log("Server is running..."));
+app.listen(PORT, () => console.log("Server is running in port: ", PORT));
