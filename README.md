@@ -30,7 +30,7 @@ _Creación de la Base de datos y las tablas_
 sequelize db:create
 sequelize db:migrate
 ```
-### Enpoints 
+### Endpoints 
 - /users:
     - GET /userprofile
     - POST /signup
